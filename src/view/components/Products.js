@@ -1,9 +1,8 @@
 import BaseComponent, {mapDispatchToProps, mapStateToProps} from "./BaseComponent";
 import {connect} from "react-redux";
 import React from "react";
-import Product from "./Product";
 import * as datasource from "../../api/datasource";
-import Grid from "@material-ui/core/Grid";
+import Product from "./Product";
 
 class Products extends BaseComponent {
     onFetchDataBegin() {
@@ -40,19 +39,14 @@ class Products extends BaseComponent {
     }
 
     renderWhenSuccess(jsonResult) {
-
-        return <Grid container>
-            {
-                jsonResult.map((data, index) => {
-                    return <Product key={index} data={data}/>
-                })
-            }
-        </Grid>;
+        return jsonResult.map((data, index) => {
+            return <Product key={index} data={data}/>
+        });
     }
 
     renderWhenLoading() {
         //TODO
-        return null;
+        return <div style={{height: "1000px"}}/>;
     }
 
     renderWhenError() {

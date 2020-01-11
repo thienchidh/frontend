@@ -1,30 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b07ff4bc-25b2-440f-a39d-3049d12453d1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/api/datasource/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/apiConfig.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/redux/actions/actionFetchData.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/redux/actions/actionName.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/redux/actions/actions.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/redux/reducers/FetchDataReducers.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/redux/reducers/reducers.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/App.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/components/BaseComponent.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/components/Counter.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/components/Footer.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/components/Header.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/components/Product.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/components/Products.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="b07ff4bc-25b2-440f-a39d-3049d12453d1" name="Default Changelist" comment="add api call, fix bug">
+      <change afterPath="$PROJECT_DIR$/src/view/components/BackToTop.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/components/HomePage.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/App.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/components/Footer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/Footer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/components/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/Header.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/components/Product.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/Product.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/components/Products.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/Products.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,6 +41,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="thienchidh &lt;thienchidh@gmail.com&gt;" />
+      </list>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectCodeStyleSettingsMigration">
@@ -91,15 +81,15 @@
     <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\IntelliJ IDEA 2019.3.1\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="F:\DATA\Java\web_adv\frontend\src\view\styles" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="F:\DATA\Java\web_adv\frontend\src\view" />
       <recent name="F:\DATA\Java\web_adv\frontend\src" />
       <recent name="F:\DATA\Java\web_adv\frontend\src\view\components" />
       <recent name="F:\DATA\Java\web_adv\frontend\src\api" />
       <recent name="F:\DATA\Java\web_adv\frontend\src\redux" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\DATA\Java\web_adv\frontend\src\view\styles" />
     </key>
   </component>
   <component name="RunManager" selected="npm.npm start">
@@ -142,11 +132,30 @@
       <workItem from="1578142796889" duration="258000" />
       <workItem from="1578143100776" duration="3573000" />
       <workItem from="1578149981753" duration="20473000" />
+      <workItem from="1578170617238" duration="336000" />
+      <workItem from="1578208319595" duration="5914000" />
+      <workItem from="1578736963888" duration="8352000" />
     </task>
+    <task id="LOCAL-00001" summary="add api call, fix bug">
+      <created>1578170674824</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1578170674824</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
+    <MESSAGE value="add api call, fix bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="add api call, fix bug" />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state x="275" y="31" key="#ESLint" timestamp="1578169229460">
@@ -165,38 +174,42 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="413" y="119" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.738@0.0.1366.738" timestamp="1578158556760" />
+    <state x="321" y="0" key="CommitChangelistDialog2" timestamp="1578170721123">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="321" y="0" key="CommitChangelistDialog2/0.0.1366.738@0.0.1366.738" timestamp="1578170721123" />
     <state x="463" y="127" key="FileChooserDialogImpl" timestamp="1578154028787">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="463" y="127" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1578154028787" />
-    <state width="1323" height="178" key="GridCell.Tab.0.bottom" timestamp="1578170521439">
+    <state width="1323" height="178" key="GridCell.Tab.0.bottom" timestamp="1578743687004">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="178" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1578170521439" />
-    <state width="1323" height="178" key="GridCell.Tab.0.center" timestamp="1578170521439">
+    <state width="1323" height="178" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1578743687004" />
+    <state width="1323" height="178" key="GridCell.Tab.0.center" timestamp="1578743687004">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="178" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1578170521439" />
-    <state width="1323" height="178" key="GridCell.Tab.0.left" timestamp="1578170521439">
+    <state width="1323" height="178" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1578743687004" />
+    <state width="1323" height="178" key="GridCell.Tab.0.left" timestamp="1578743687004">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="178" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1578170521439" />
-    <state width="1323" height="178" key="GridCell.Tab.0.right" timestamp="1578170521439">
+    <state width="1323" height="178" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1578743687004" />
+    <state width="1323" height="178" key="GridCell.Tab.0.right" timestamp="1578743687004">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="178" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1578170521439" />
-    <state x="390" y="197" key="com.intellij.ide.util.TipDialog" timestamp="1578143102282">
+    <state width="1323" height="178" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1578743687004" />
+    <state x="390" y="197" key="com.intellij.ide.util.TipDialog" timestamp="1578208326236">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="390" y="197" key="com.intellij.ide.util.TipDialog/0.0.1366.738@0.0.1366.738" timestamp="1578143102282" />
-    <state x="390" y="125" width="709" height="546" key="find.popup" timestamp="1578169253238">
+    <state x="390" y="197" key="com.intellij.ide.util.TipDialog/0.0.1366.738@0.0.1366.738" timestamp="1578208326236" />
+    <state x="390" y="125" width="709" height="546" key="find.popup" timestamp="1578754475054">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="390" y="125" width="709" height="546" key="find.popup/0.0.1366.738@0.0.1366.738" timestamp="1578169253238" />
-    <state x="339" y="165" key="run.anything.popup" timestamp="1578167494383">
+    <state x="390" y="125" width="709" height="546" key="find.popup/0.0.1366.738@0.0.1366.738" timestamp="1578754475054" />
+    <state x="339" y="165" key="run.anything.popup" timestamp="1578213541945">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="339" y="165" key="run.anything.popup/0.0.1366.738@0.0.1366.738" timestamp="1578167494383" />
+    <state x="339" y="165" key="run.anything.popup/0.0.1366.738@0.0.1366.738" timestamp="1578213541945" />
     <state x="346" y="59" width="672" height="678" key="search.everywhere.popup" timestamp="1578158501944">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
