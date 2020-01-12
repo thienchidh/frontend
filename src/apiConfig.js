@@ -1,3 +1,3 @@
 export const apiConfig = {
-    baseApiUrl: "http://localhost:8080"
+    baseApiUrl: process.env.apiPath || "http://localhost:8080"
 };

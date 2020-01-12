@@ -1,7 +1,6 @@
 import * as React from "react";
 import autoBind from "auto-bind";
 import {actionBeginFetchData, actionErrorFetchData, actionSuccessFetchData} from "../../redux/actions/actionFetchData";
-import {func} from "prop-types";
 
 class BaseComponent extends React.Component {
     constructor(props, context) {
@@ -36,13 +35,6 @@ class BaseComponent extends React.Component {
         throw new Error("not implemented!");
     }
 }
-
-BaseComponent.propTypes = {
-    dispatch: func.isRequired,
-    beginFetchData: func.isRequired,
-    successFetchData: func.isRequired,
-    errorFetchData: func.isRequired
-};
 
 export const mapStateToProps = state => ({
     ...state

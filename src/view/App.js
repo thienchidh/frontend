@@ -1,43 +1,84 @@
 import * as React from "react";
-import {Route, Switch} from "react-router-dom";
-import Products from "./components/Products";
 import {connect} from "react-redux";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import Container from "@material-ui/core/Container";
-import BackToTop from "./components/BackToTop";
-import HomePage from "./components/HomePage";
+import HomePage from "./pages/MainPage";
+import {makeStyles} from "@material-ui/core/styles";
+import {mapDispatchToProps, mapStateToProps} from "./components/BaseComponent";
 
-class App extends React.Component {
+const useStyles = makeStyles(theme => ({
+    '@global': {
+        ul: {
+            margin: 0,
+            padding: 0,
+        },
+        li: {
+            listStyle: 'none',
+        },
+    },
+    appBar: {
+        borderBottom: `1px solid ${theme.palette.divider}`,
+    },
+    toolbar: {
+        flexWrap: 'wrap',
+    },
+    toolbarTitle: {
+        flexGrow: 1,
+    },
+    link: {
+        margin: theme.spacing(1, 1.5),
+    },
+    cardHeader: {
+        backgroundColor:
+            theme.palette.type === 'dark' ? theme.palette.grey[700] : theme.palette.grey[200],
+    },
+    cardPricing: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'baseline',
+        marginBottom: theme.spacing(2),
+    },
+    footer: {
+        borderTop: `1px solid ${theme.palette.divider}`,
+        marginTop: theme.spacing(8),
+        paddingTop: theme.spacing(3),
+        paddingBottom: theme.spacing(3),
+        [theme.breakpoints.up('sm')]: {
+            paddingTop: theme.spacing(6),
+            paddingBottom: theme.spacing(6),
+        },
+    },
+    icon: {
+        marginRight: theme.spacing(2),
+    },
+    heroContent: {
+        backgroundColor: theme.palette.background.paper,
+        padding: theme.spacing(8, 0, 6),
+    },
+    heroButtons: {
+        marginTop: theme.spacing(4),
+    },
+    cardGrid: {
+        paddingTop: theme.spacing(8),
+        paddingBottom: theme.spacing(8),
+    },
+    card: {
+        height: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+    },
+    cardMedia: {
+        paddingTop: '56.25%', // 16:9
+    },
+    cardContent: {
+        flexGrow: 1,
+    },
+}));
 
-    render() {
-        return <HomePage/>;
-        return (
-            <React.Fragment>
-                <Header/>
-                {this.renderBody()}
-                <Footer/>
-            </React.Fragment>
-        );
-    }
-
-    renderBody() {
-        return (
-            <>
-                <Container>
-                    <Switch>
-                        <Route path={"/"}>
-                            <Products/>
-                        </Route>
-                        <Route exact path={"/admin"}>
-                            <HomePage/>
-                        </Route>
-                    </Switch>
-                </Container>
-                <BackToTop/>
-            </>
-        )
-    }
+function App(props) {
+    const classes = useStyles();
+    return <HomePage classes={classes}/>;
 }
 
-export default connect()(App);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(App);
