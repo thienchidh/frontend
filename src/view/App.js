@@ -74,8 +74,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function App(props) {
-    const classes = useStyles();
-    return <HomePage classes={classes}/>;
+    return <HomePage classes={useStyles()}/>;
 }
 
 export default connect(

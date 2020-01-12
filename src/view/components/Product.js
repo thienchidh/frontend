@@ -9,12 +9,19 @@ import Typography from "@material-ui/core/Typography";
 import CardActions from "@material-ui/core/CardActions";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
+import autoBind from "auto-bind";
 
 class Product extends React.Component {
+
+    constructor(props, context) {
+        super(props, context);
+        autoBind(this);
+    }
+
     render() {
         const {classes, data: {name, price, imageLink, other}} = this.props;
 
-        return <Grid item xs={12} sm={6} md={4}>
+        return <Grid item xs={12} sm={6} md={3}>
             <Card className={classes.card}>
                 <CardMedia
                     className={classes.cardMedia}
@@ -36,12 +43,19 @@ class Product extends React.Component {
                     <Button size="small" color="primary">
                         View
                     </Button>
-                    <Button size="small" color="primary">
-                        Edit
+                    <Button size="small" color="primary" onClick={this.buy}>
+                        Buy
                     </Button>
                 </CardActions>
             </Card>
         </Grid>
+    }
+
+    buy({target}) {
+        const {data: {id, name, price, imageLink, other}} = this.props;
+
+        console.log(id)
+        // TODO
     }
 }
 

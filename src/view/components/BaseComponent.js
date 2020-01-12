@@ -10,7 +10,7 @@ class BaseComponent extends React.Component {
 
     componentDidMount() {
         this.onFetchDataBegin();
-        this.onFetchData({})
+        this.onFetchData({page: 0, limit: 30})
             .then(
                 (jsonResult) => this.onFetchDataSuccess(jsonResult)
             )

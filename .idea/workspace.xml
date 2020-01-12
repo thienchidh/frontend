@@ -2,18 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b07ff4bc-25b2-440f-a39d-3049d12453d1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/view/pages/MainPage.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/pages/AdminPage.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/pages/LoginPage.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/datasource/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/datasource/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/apiConfig.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/apiConfig.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/reducers/FetchDataReducers.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/reducers/fetchDataReducers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/reducers/reducers.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/reducers/reducers.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/components/BaseComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/BaseComponent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/Counter.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/Footer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/Footer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/components/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/Header.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/HomePage.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/components/Product.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/Product.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/components/Products.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/Products.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/pages/MainPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/pages/MainPage.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,7 +69,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/view/styles" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/view/pages" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -85,15 +86,16 @@
     <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\IntelliJ IDEA 2019.3.1\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="F:\DATA\Java\web_adv\frontend\src\view\styles" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="F:\DATA\Java\web_adv\frontend\src\view\pages" />
       <recent name="F:\DATA\Java\web_adv\frontend\src\view" />
       <recent name="F:\DATA\Java\web_adv\frontend\src" />
       <recent name="F:\DATA\Java\web_adv\frontend\src\view\components" />
       <recent name="F:\DATA\Java\web_adv\frontend\src\api" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\DATA\Java\web_adv\frontend\src\view\pages" />
+      <recent name="F:\DATA\Java\web_adv\frontend\src\view\styles" />
     </key>
   </component>
   <component name="RunManager" selected="npm.npm start">
@@ -141,7 +143,10 @@
       <workItem from="1578736963888" duration="8486000" />
       <workItem from="1578762387211" duration="17000" />
       <workItem from="1578832984092" duration="286000" />
-      <workItem from="1578833353240" duration="4929000" />
+      <workItem from="1578833353240" duration="5098000" />
+      <workItem from="1578838601154" duration="44000" />
+      <workItem from="1578844756601" duration="45000" />
+      <workItem from="1578844863079" duration="10755000" />
     </task>
     <task id="LOCAL-00001" summary="add api call, fix bug">
       <created>1578170674824</created>
@@ -157,7 +162,14 @@
       <option name="project" value="LOCAL" />
       <updated>1578754944061</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="update api call, fix ui">
+      <created>1578838485834</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1578838485834</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -167,7 +179,8 @@
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
     <MESSAGE value="add api call, fix bug" />
     <MESSAGE value="clone some template to show home page..." />
-    <option name="LAST_COMMIT_MESSAGE" value="clone some template to show home page..." />
+    <MESSAGE value="update api call, fix ui" />
+    <option name="LAST_COMMIT_MESSAGE" value="update api call, fix ui" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -189,38 +202,42 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="413" y="119" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.738@0.0.1366.738" timestamp="1578834933963" />
-    <state x="321" y="0" key="CommitChangelistDialog2" timestamp="1578754942041">
+    <state x="321" y="0" key="CommitChangelistDialog2" timestamp="1578838483598">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="321" y="0" key="CommitChangelistDialog2/0.0.1366.738@0.0.1366.738" timestamp="1578754942041" />
+    <state x="321" y="0" key="CommitChangelistDialog2/0.0.1366.738@0.0.1366.738" timestamp="1578838483598" />
     <state x="463" y="127" key="FileChooserDialogImpl" timestamp="1578154028787">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="463" y="127" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1578154028787" />
-    <state width="1323" height="178" key="GridCell.Tab.0.bottom" timestamp="1578755013404">
+    <state width="1323" height="178" key="GridCell.Tab.0.bottom" timestamp="1578852982711">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="178" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1578755013404" />
-    <state width="1323" height="178" key="GridCell.Tab.0.center" timestamp="1578755013404">
+    <state width="1323" height="178" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1578852982711" />
+    <state width="1323" height="178" key="GridCell.Tab.0.center" timestamp="1578852982711">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="178" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1578755013404" />
-    <state width="1323" height="178" key="GridCell.Tab.0.left" timestamp="1578755013403">
+    <state width="1323" height="178" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1578852982711" />
+    <state width="1323" height="178" key="GridCell.Tab.0.left" timestamp="1578852982711">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="178" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1578755013403" />
-    <state width="1323" height="178" key="GridCell.Tab.0.right" timestamp="1578755013404">
+    <state width="1323" height="178" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1578852982711" />
+    <state width="1323" height="178" key="GridCell.Tab.0.right" timestamp="1578852982711">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="178" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1578755013404" />
-    <state x="390" y="197" key="com.intellij.ide.util.TipDialog" timestamp="1578833492907">
+    <state width="1323" height="178" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1578852982711" />
+    <state x="390" y="197" key="com.intellij.ide.util.TipDialog" timestamp="1578844765996">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="390" y="197" key="com.intellij.ide.util.TipDialog/0.0.1366.738@0.0.1366.738" timestamp="1578833492907" />
-    <state x="390" y="125" width="709" height="546" key="find.popup" timestamp="1578837607557">
+    <state x="390" y="197" key="com.intellij.ide.util.TipDialog/0.0.1366.738@0.0.1366.738" timestamp="1578844765996" />
+    <state x="494" y="288" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1578849460287">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="390" y="125" width="709" height="546" key="find.popup/0.0.1366.738@0.0.1366.738" timestamp="1578837607557" />
+    <state x="494" y="288" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1366.738@0.0.1366.738" timestamp="1578849460287" />
+    <state x="390" y="125" width="709" height="546" key="find.popup" timestamp="1578855879527">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="390" y="125" width="709" height="546" key="find.popup/0.0.1366.738@0.0.1366.738" timestamp="1578855879527" />
     <state x="339" y="165" key="run.anything.popup" timestamp="1578835421960">
       <screen x="0" y="0" width="1366" height="738" />
     </state>

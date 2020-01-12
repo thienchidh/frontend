@@ -7,6 +7,8 @@ import {mapDispatchToProps, mapStateToProps} from "../components/BaseComponent";
 import Container from "@material-ui/core/Container";
 import {Route, Switch} from "react-router-dom";
 import BackToTop from "../components/BackToTop";
+import LoginPage from "./LoginPage";
+import AdminPage from "./AdminPage";
 
 function MainPage(props) {
     const {classes} = props;
@@ -25,10 +27,13 @@ function renderBody(props) {
     return <>
         <Container>
             <Switch>
-                <Route path={"/"}>
-                    <Products classes={classes}/>
+                <Route exact path={"/login"}>
+                    <LoginPage classes={classes}/>
                 </Route>
                 <Route exact path={"/admin"}>
+                    <AdminPage classes={classes}/>
+                </Route>
+                <Route path={"/"}>
                     <Products classes={classes}/>
                 </Route>
             </Switch>

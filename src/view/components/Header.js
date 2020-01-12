@@ -1,7 +1,6 @@
 import * as React from "react";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import {AppBar, Slide, Toolbar, useScrollTrigger} from "@material-ui/core";
-import Typography from "@material-ui/core/Typography";
 import Link from "@material-ui/core/Link";
 import Button from "@material-ui/core/Button";
 import {connect} from "react-redux";
@@ -28,9 +27,9 @@ function Header(props) {
         <HideOnScroll>
             <AppBar color="default" elevation={0} className={appBar}>
                 <Toolbar className={toolbar}>
-                    <Typography variant="h6" color="inherit" noWrap className={toolbarTitle}>
+                    <Link underline={"none"} href={"/"} variant="h6" color="inherit" noWrap className={toolbarTitle}>
                         Company name
-                    </Typography>
+                    </Link>
                     <nav>
                         <Link variant="button" color="textPrimary" href="#" className={link}>
                             Features
@@ -42,7 +41,7 @@ function Header(props) {
                             Support
                         </Link>
                     </nav>
-                    <Button href="#" color="primary" variant="outlined" className={link}>
+                    <Button href="/login" color="primary" variant="outlined" className={link}>
                         Login
                     </Button>
                 </Toolbar>
