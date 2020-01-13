@@ -6,6 +6,7 @@ import {
     actionChangeSession,
     actionErrorLogin
 } from "./actionSignIn";
+import {actionChangeAccountInfo, actionChangeSignUpInfo, actionChangeUserInfo} from "./actionSignUp";
 
 export default {
     actionBeginFetchData,
@@ -16,4 +17,7 @@ export default {
     actionBeginLogin,
     actionChangeSession,
     actionErrorLogin,
+    actionChangeSignUpInfo,
+    actionChangeAccountInfo,
+    actionChangeUserInfo,
 };

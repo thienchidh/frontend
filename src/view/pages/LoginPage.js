@@ -62,12 +62,6 @@ function SignIn(props) {
     function onLogin(e) {
         e.preventDefault();
 
-        if (isRemember) {
-            Object.keys(account).forEach(name => localStorage[name] = account[name]);
-        } else {
-            Object.keys(account).forEach(name => localStorage[name] = "");
-        }
-
         function isValidateForm() {
             for (const key of Object.keys(account)) {
                 if (account[key].trim().length === 0) {
@@ -78,6 +72,13 @@ function SignIn(props) {
         }
 
         if (isValidateForm()) {
+
+            if (isRemember) {
+                Object.keys(account).forEach(name => localStorage[name] = account[name]);
+            } else {
+                Object.keys(account).forEach(name => localStorage[name] = "");
+            }
+
             login();
         }
     }

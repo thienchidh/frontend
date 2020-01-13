@@ -6,7 +6,7 @@ const {baseApiUrl} = apiConfig;
 export async function register(account) {
     const response = await axios.post(
         `${baseApiUrl}/register`,
-        {account}
+        account
     ).catch(ignored => {
     });
     return response?.status === 200 ? response.data.body : null;
