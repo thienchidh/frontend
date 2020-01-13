@@ -6,7 +6,6 @@ import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import BackToTop from "./BackToTop";
 import Product from "./Product";
-import {VirtuosoGrid} from "react-virtuoso";
 import TablePagination from "@material-ui/core/TablePagination";
 import {Table, TableBody, TableFooter, TableRow} from "@material-ui/core";
 
@@ -48,20 +47,6 @@ class Products extends BaseComponent {
 
     renderWhenSuccess(jsonResult) {
         const {classes} = this.props;
-        const itemsCount = jsonResult.length + 1;
-
-        let grid = <VirtuosoGrid
-            item={(index) => {
-                if (index < itemsCount) {
-                    const item = jsonResult[index];
-                    return <Product classes={classes} key={item.id} data={item}/>;
-                } else {
-                    // render loadMore item
-                    return null;
-                }
-            }}
-            totalCount={itemsCount}
-        />;
 
         return <main>
             {/* Hero unit */}
@@ -121,12 +106,12 @@ class Products extends BaseComponent {
 
     renderWhenLoading() {
         //TODO
-        return <div style={{height: "1000px"}}/>;
+        return <div style={{height: "10000px"}}/>;
     }
 
     renderWhenError({message}) {
         //TODO
-        return <div style={{height: "1000px"}}>
+        return <div style={{height: "10000px"}}>
             {message}
         </div>;
     }

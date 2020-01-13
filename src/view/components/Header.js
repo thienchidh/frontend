@@ -4,7 +4,10 @@ import {AppBar, Slide, Toolbar, useScrollTrigger} from "@material-ui/core";
 import Link from "@material-ui/core/Link";
 import Button from "@material-ui/core/Button";
 import {connect} from "react-redux";
-import {mapDispatchToProps, mapStateToProps} from "./BaseComponent";
+import {mapStateToProps} from "./BaseComponent";
+import * as dataSource from "../../api/datasource";
+import {withRouter} from "react-router-dom";
+import {actionChangeSession} from "../../redux/actions/actionSignIn";
 
 function HideOnScroll(props) {
     const {children, window} = props;
@@ -21,7 +24,20 @@ function HideOnScroll(props) {
 }
 
 function Header(props) {
-    const {classes: {appBar, link, toolbar, toolbarTitle}} = props;
+    const {classes: {appBar, link, toolbar, toolbarTitle}, onSuccessLogout, authenticationReducers} = props;
+    const {session} = authenticationReducers;
+
+    function logout(e) {
+        e.preventDefault();
+
+        dataSource.logout(session.token).then(ignored => {
+            onSuccessLogout();
+            props.history.push('/');
+        });
+    }
+
+    const isHaveSession = (session?.token != null);
+
     return <>
         <CssBaseline/>
         <HideOnScroll>
@@ -41,8 +57,12 @@ function Header(props) {
                             Support
                         </Link>
                     </nav>
-                    <Button href="/login" color="primary" variant="outlined" className={link}>
-                        Login
+                    <Button href={`/${isHaveSession ? "logout" : "login"}`}
+                            color={isHaveSession ? "secondary" : "primary"} variant="contained"
+                            className={link}
+                            onClick={isHaveSession ? logout : null}
+                    >
+                        {isHaveSession ? "logout" : "login"}
                     </Button>
                 </Toolbar>
             </AppBar>
@@ -51,7 +71,14 @@ function Header(props) {
     </>;
 }
 
-export default connect(
+function mapDispatchToProps(dispatch) {
+    return {
+        ...dispatch,
+        onSuccessLogout: () => dispatch(actionChangeSession(null)),
+    }
+}
+
+export default withRouter(connect(
     mapStateToProps,
     mapDispatchToProps
-)(Header);
+)(Header));

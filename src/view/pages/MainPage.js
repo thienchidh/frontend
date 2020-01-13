@@ -9,15 +9,25 @@ import {Route, Switch} from "react-router-dom";
 import BackToTop from "../components/BackToTop";
 import LoginPage from "./LoginPage";
 import AdminPage from "./AdminPage";
+import SignUpPage from "./SignUpPage";
+import ForgotPassword from "./ForgotPassword";
+import Checkout from "./Checkout";
+import Dashboard from "./DashBoard";
 
 function MainPage(props) {
     const {classes} = props;
-
-    return <React.Fragment>
-        <Header classes={classes}/>
-        {renderBody(props)}
-        <Footer classes={classes}/>
-    </React.Fragment>;
+    return <Switch>
+        <Route exact path={"/dashboard"}>
+            <Dashboard classes={classes}/>
+        </Route>
+        <Route>
+            <React.Fragment>
+                <Header classes={classes}/>
+                {renderBody(props)}
+                <Footer classes={classes}/>
+            </React.Fragment>
+        </Route>
+    </Switch>;
 }
 
 function renderBody(props) {
@@ -32,6 +42,15 @@ function renderBody(props) {
                 </Route>
                 <Route exact path={"/admin"}>
                     <AdminPage classes={classes}/>
+                </Route>
+                <Route exact path={"/sign-up"}>
+                    <SignUpPage classes={classes}/>
+                </Route>
+                <Route exact path={"/forgot-password"}>
+                    <ForgotPassword classes={classes}/>
+                </Route>
+                <Route exact path={"/checkout"}>
+                    <Checkout classes={classes}/>
                 </Route>
                 <Route path={"/"}>
                     <Products classes={classes}/>
