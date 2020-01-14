@@ -7,8 +7,8 @@ import {
     actionErrorLogin
 } from "./actionSignIn";
 import {actionChangeAccountInfo, actionChangeSignUpInfo, actionChangeUserInfo} from "./actionSignUp";
-import {actionChangePage, actionDeleteProduct} from "./actionProducts";
-import {actionUpdateCart} from "./actionCart";
+import {actionChangePage, actionDeleteProduct, actionUpdateQuantity} from "./actionProducts";
+import {actionCloseCart, actionOpenCart, actionUpdateCart} from "./actionCart";
 
 export default {
     actionBeginFetchData,
@@ -19,10 +19,13 @@ export default {
     actionChangeRemember,
     actionBeginLogin,
     actionChangeSession,
+    actionOpenCart,
+    actionCloseCart,
     actionErrorLogin,
     actionChangeSignUpInfo,
     actionChangeAccountInfo,
     actionChangeUserInfo,
     actionDeleteProduct,
     actionChangePage,
+    actionUpdateQuantity,
 };

@@ -7,7 +7,7 @@ import Grid from "@material-ui/core/Grid";
 import BackToTop from "./BackToTop";
 import Product from "./Product";
 import TablePagination from "@material-ui/core/TablePagination";
-import {Table, TableBody, TableFooter, TableRow} from "@material-ui/core";
+import {Table, TableFooter, TableRow} from "@material-ui/core";
 
 class Products extends BaseComponent {
 
@@ -114,12 +114,10 @@ class Products extends BaseComponent {
             {/* Hero unit */}
             <Container className={classes.cardGrid} maxWidth="md">
                 {/* End hero unit */}
+                <Grid container spacing={2}>
+                    {slice.map(item => <Product classes={classes} key={item.id} data={item}/>)}
+                </Grid>
                 <Table className={classes.table} aria-label="custom pagination table">
-                    <TableBody>
-                        <Grid container spacing={2}>
-                            {slice.map(item => <Product classes={classes} key={item.id} data={item}/>)}
-                        </Grid>
-                    </TableBody>
                     <TableFooter>
                         <TableRow>
                             <TablePagination

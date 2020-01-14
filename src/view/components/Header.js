@@ -1,6 +1,6 @@
 import * as React from "react";
 import ShoppingCart from '@material-ui/icons/ShoppingCart';
-
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import CssBaseline from "@material-ui/core/CssBaseline";
 import {AppBar, Slide, Toolbar, useScrollTrigger} from "@material-ui/core";
 import Link from "@material-ui/core/Link";
@@ -12,7 +12,8 @@ import {withRouter} from "react-router-dom";
 import {actionChangeSession} from "../../redux/actions/actionSignIn";
 import IconButton from "@material-ui/core/IconButton";
 import Badge from "@material-ui/core/Badge";
-import {actionUpdateCart} from "../../redux/actions/actionCart";
+import {actionOpenCart, actionUpdateCart} from "../../redux/actions/actionCart";
+import Cart from "../pages/Cart";
 
 function HideOnScroll(props) {
     const {children, window} = props;
@@ -30,23 +31,26 @@ function HideOnScroll(props) {
 
 class Header extends React.Component {
 
+    componentDidMount() {
+        this.componentDidUpdate();
+    }
+
     componentDidUpdate(prevProps, prevState, snapshot) {
         const {cartReducers, authenticationReducers, onUpdateCart} = this.props;
         const {session} = authenticationReducers;
         const {cart} = cartReducers;
 
         if (session != null && cart == null) {
-            console.log(session.token);
             dataSource.fetchCart(session.token)
                 .then((cart) => {
-                        onUpdateCart(cart);
+                    onUpdateCart(cart);
                     }
                 );
         }
     }
 
     render() {
-        const {classes: {appBar, link, toolbar, toolbarTitle}, onSuccessLogout, authenticationReducers} = this.props;
+        const {classes: {appBar, link, toolbar, toolbarTitle}, onSuccessLogout, authenticationReducers, onOpenCart} = this.props;
         const {session} = authenticationReducers;
         const {cartReducers} = this.props;
         const {cart} = cartReducers;
@@ -79,19 +83,33 @@ class Header extends React.Component {
                             </Link>
                             <Link variant="button" color="textPrimary" href="#"
                                   className={link}> Support </Link>
-                            {isHaveSession ? <IconButton color="inherit">
-                                <Badge badgeContent={cart?.products?.length} color="secondary">
-                                    <ShoppingCart/>
-                                </Badge>
-                            </IconButton> : null}
+                            {isHaveSession ?
+                                <>
+                                    <IconButton
+                                        onClick={onOpenCart}
+                                        color="inherit">
+                                        <Badge badgeContent={cart?.products?.length} color="secondary">
+                                            <ShoppingCart/>
+                                        </Badge>
+                                    </IconButton>
+                                    <Cart/>
+                                </>
+                                : null}
+                            {isHaveSession ?
+                                <IconButton
+                                    className={link}
+                                    color={"secondary"}
+                                    onClick={logout}
+                                >
+                                    <ExitToAppIcon
+                                        variant="contained"
+                                    />
+                                </IconButton>
+                                :
+                                <Button href={"/login"}
+                                        color={"primary"} variant="contained"
+                                        className={link}>{"login"}</Button>}
                         </nav>
-                        <Button href={`/${isHaveSession ? "logout" : "login"}`}
-                                color={isHaveSession ? "secondary" : "primary"} variant="contained"
-                                className={link}
-                                onClick={isHaveSession ? logout : null}
-                        >
-                            {isHaveSession ? `logout(${session.user.lastName})` : "login"}
-                        </Button>
                     </Toolbar>
                 </AppBar>
             </HideOnScroll>
@@ -105,6 +123,7 @@ function mapDispatchToProps(dispatch) {
         ...dispatch,
         onSuccessLogout: () => dispatch(actionChangeSession(null)),
         onUpdateCart: (e) => dispatch(actionUpdateCart(e)),
+        onOpenCart: (e) => dispatch(actionOpenCart(e)),
     }
 }
 

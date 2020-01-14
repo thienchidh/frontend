@@ -9,6 +9,8 @@ import Typography from '@material-ui/core/Typography';
 import AddressForm from '../components/AddressForm';
 import PaymentForm from '../components/PaymentForm';
 import Review from '../components/Review';
+import {connect} from "react-redux";
+import {mapDispatchToProps, mapStateToProps} from "../components/BaseComponent";
 
 const useStyles = makeStyles(theme => ({
     layout: {
@@ -59,7 +61,7 @@ function getStepContent(step) {
     }
 }
 
-export default function Checkout() {
+function Checkout(props) {
     const classes = useStyles();
     const [activeStep, setActiveStep] = React.useState(0);
 
@@ -120,3 +122,8 @@ export default function Checkout() {
         </main>
     );
 }
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Checkout);

@@ -23,7 +23,7 @@ import {
 import {withRouter} from "react-router-dom";
 
 function SignIn(props) {
-    const {classes, onChangeLoginInfo, onChangeRemember, onBeginLogin, onSuccessLogin, onErrorLogin, onUpdateCart} = props;
+    const {classes, onChangeLoginInfo, onChangeRemember, onBeginLogin, onSuccessLogin, onErrorLogin} = props;
     const {authenticationReducers} = props;
     const {isRemember, account, isBeginLogin, isSuccessLogin, isErrorLogin, session} = authenticationReducers;
     const token = session?.token;

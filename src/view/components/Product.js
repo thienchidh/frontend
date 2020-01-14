@@ -11,7 +11,7 @@ import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import autoBind from "auto-bind";
 import * as dataSource from "../../api/datasource";
-import {actionDeleteProduct} from "../../redux/actions/actionProducts";
+import {actionDeleteProduct, actionUpdateQuantity} from "../../redux/actions/actionProducts";
 import {withRouter} from "react-router-dom";
 import {actionUpdateCart} from "../../redux/actions/actionCart";
 import {Add, AddShoppingCart, Remove} from "@material-ui/icons";
@@ -28,13 +28,13 @@ class Product extends React.Component {
     render() {
         const {classes, data: {id, name, price, imageLink, other}, authenticationReducers, productReducers} = this.props;
         const {session} = authenticationReducers;
-        const {deletedItems} = productReducers;
+        const {deletedItems, quantityItems} = productReducers;
 
         if (deletedItems[id] === true) {
             return null;
         }
 
-        const currentChoose = 1;
+        const currentChoose = quantityItems[id] || 0;
 
         return <Grid item xs={12} sm={6} md={3}>
             <Card className={classes.card}>
@@ -51,17 +51,29 @@ class Product extends React.Component {
                 <CardActions>
                     <Grid container>
                         <Grid item xs={12} sm={6} md={3}>
-                            <IconButton color="primary">
-                                <Add/>
+                            <IconButton
+                                color="secondary"
+                                onClick={() => {
+                                    this.updateQuantity(-1)
+                                }}>
+                                <Remove/>
                             </IconButton>
                         </Grid>
                         <Grid item xs={12} sm={6} md={3}>
-                            <TextField inputProps={{min: 0, style: {textAlign: 'center'}}}
+                            <TextField color={"secondary"}
+                                       onChange={({target}) => {
+                                           this.updateQuantity(-currentChoose + parseInt(target.value));
+                                       }}
+                                       inputProps={{min: 0, style: {textAlign: 'center'}}}
                                        value={currentChoose}/>
                         </Grid>
                         <Grid item xs={12} sm={6} md={3}>
-                            <IconButton color="primary">
-                                <Remove/>
+                            <IconButton
+                                color="secondary"
+                                onClick={() => {
+                                    this.updateQuantity(+1)
+                                }}>
+                                <Add/>
                             </IconButton>
                         </Grid>
                         <Grid item xs={12} sm={6} md={3}>
@@ -69,8 +81,11 @@ class Product extends React.Component {
                                 session?.user?.role === 'IS_ADMIN' ?
                                     <Button size="small" color="primary"
                                             onClick={this.onDeleteProduct}>Delete</Button> :
-                                    <IconButton color="primary">
-                                        <AddShoppingCart onClick={this.addToCart}/>
+                                    <IconButton
+                                        color="primary"
+                                        onClick={this.addToCart}
+                                    >
+                                        <AddShoppingCart/>
                                     </IconButton>
                             }
                         </Grid>
@@ -88,13 +103,28 @@ class Product extends React.Component {
         if (session != null) {
             const {token} = session;
             if (token != null) {
-                cart.products = [...(cart.products != null ? cart.products : []), data];
+                const {data: {id}, productReducers} = this.props;
+                const {quantityItems} = productReducers;
+                let quantity = quantityItems[id] || 0;
 
-                dataSource.updateCart(token, cart).then(() => {
+                if (quantity === 0) {
+                    this.updateQuantity(+1);
+                    quantity = 1;
+                }
 
-                }).finally(() => {
-                    onUpdateCart(cart)
-                });
+                const list = new Array(quantity);
+                for (let i = 0; i < quantity; ++i) {
+                    list[i] = data;
+                }
+
+                cart.products = [...(cart.products != null ? cart.products : []), ...list];
+
+                dataSource.updateCart(token, cart)
+                    .then(ignored => {
+                    })
+                    .finally(() => {
+                        onUpdateCart(cart)
+                    });
             }
         } else {
             this.props.history.push("/login");
@@ -112,6 +142,15 @@ class Product extends React.Component {
             ).catch(ignored => {
         });
     }
+
+    updateQuantity(number) {
+        const {onUpdateQuantity} = this.props;
+        const {data: {id}, productReducers} = this.props;
+        const {quantityItems} = productReducers;
+
+        quantityItems[id] = Math.min(10000, Math.max(0, (quantityItems[id] || 0) + number));
+        onUpdateQuantity(quantityItems)
+    }
 }
 
 Product.propTypes = {
@@ -124,6 +163,7 @@ const mapDispatchToProps = function (dispatch) {
         ...dispatch,
         onDeleteItem: (e) => dispatch(actionDeleteProduct(e)),
         onUpdateCart: (e) => dispatch(actionUpdateCart(e)),
+        onUpdateQuantity: (e) => dispatch(actionUpdateQuantity(e))
     }
 };
 

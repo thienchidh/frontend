@@ -1,7 +1,13 @@
-import {ACTION_CHANGE_ITEM_PAGE, ACTION_CHANGE_PAGE, ACTION_DELETE_PRODUCT} from "../actions/actionName";
+import {
+    ACTION_CHANGE_ITEM_PAGE,
+    ACTION_CHANGE_PAGE,
+    ACTION_DELETE_PRODUCT,
+    ACTION_UPDATE_QUANTITY
+} from "../actions/actionName";
 
 const initState = {
     deletedItems: [],
+    quantityItems: [],
     currentPage: 0,
     limitItemPage: 8
 };
@@ -25,6 +31,12 @@ export const productReducers = function (state = initState, action) {
                 limitItemPage: parseInt(action.payload),
                 currentPage: 0,
                 deletedItem: []
+            };
+        case ACTION_UPDATE_QUANTITY:
+            const quantities = action.payload;
+            return {
+                ...state,
+                quantityItems: quantities,
             };
         default:
     }
