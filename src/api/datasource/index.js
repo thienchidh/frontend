@@ -104,8 +104,13 @@ export async function deleteProductById({token, id}) {
 
 export async function fetchCart(token) {
     const response = await axios.post(
-        `${baseApiUrl}/products/cart`,
-        token
+        `${baseApiUrl}/cart`,
+        token,
+        {
+            headers: {
+                'Content-Type': 'text/plain'
+            }
+        }
     ).catch(ignored => {
     });
     return response?.status === 200 ? response.data.body : {};
@@ -113,8 +118,11 @@ export async function fetchCart(token) {
 
 export async function updateCart(token, cart = {}) {
     const response = await axios.post(
-        `${baseApiUrl}/products/cart/update`,
-        {token, cart}
+        `${baseApiUrl}/cart/update`,
+        {
+            token: token,
+            data: cart
+        }
     ).catch(ignored => {
     });
     return response?.status === 200 ? response.data.body : cart;

@@ -12,6 +12,11 @@ import Grid from "@material-ui/core/Grid";
 import autoBind from "auto-bind";
 import * as dataSource from "../../api/datasource";
 import {actionDeleteProduct} from "../../redux/actions/actionProducts";
+import {withRouter} from "react-router-dom";
+import {actionUpdateCart} from "../../redux/actions/actionCart";
+import {Add, AddShoppingCart, Remove} from "@material-ui/icons";
+import IconButton from "@material-ui/core/IconButton";
+import {TextField} from "@material-ui/core";
 
 class Product extends React.Component {
 
@@ -25,9 +30,11 @@ class Product extends React.Component {
         const {session} = authenticationReducers;
         const {deletedItems} = productReducers;
 
-        if (deletedItems.includes(id)) {
+        if (deletedItems[id] === true) {
             return null;
         }
+
+        const currentChoose = 1;
 
         return <Grid item xs={12} sm={6} md={3}>
             <Card className={classes.card}>
@@ -37,32 +44,61 @@ class Product extends React.Component {
                     title={name}
                 />
                 <CardContent className={classes.cardContent}>
-                    <Typography gutterBottom variant="h5" component="h2">
-                        {name}
-                    </Typography>
-                    <Typography gutterBottom variant="h6" component="h3">
-                        {price}
-                    </Typography>
-                    <Typography>
-                        {other}
-                    </Typography>
+                    <Typography variant={"h6"} gutterBottom className={classes.title}> {name} </Typography>
+                    <Typography className={classes.price}> {price}{'₫'} </Typography>
+                    <Typography className={classes.description}> {other} </Typography>
                 </CardContent>
                 <CardActions>
-                    {
-                        session?.user?.role === 'IS_ADMIN' ?
-                            <Button size="small" color="primary" onClick={this.onDeleteProduct}>Delete</Button> :
-                            <Button size="small" color="primary" onClick={this.addToCart}>Add to cart</Button>
-                    }
+                    <Grid container>
+                        <Grid item xs={12} sm={6} md={3}>
+                            <IconButton color="primary">
+                                <Add/>
+                            </IconButton>
+                        </Grid>
+                        <Grid item xs={12} sm={6} md={3}>
+                            <TextField inputProps={{min: 0, style: {textAlign: 'center'}}}
+                                       value={currentChoose}/>
+                        </Grid>
+                        <Grid item xs={12} sm={6} md={3}>
+                            <IconButton color="primary">
+                                <Remove/>
+                            </IconButton>
+                        </Grid>
+                        <Grid item xs={12} sm={6} md={3}>
+                            {
+                                session?.user?.role === 'IS_ADMIN' ?
+                                    <Button size="small" color="primary"
+                                            onClick={this.onDeleteProduct}>Delete</Button> :
+                                    <IconButton color="primary">
+                                        <AddShoppingCart onClick={this.addToCart}/>
+                                    </IconButton>
+                            }
+                        </Grid>
+                    </Grid>
                 </CardActions>
             </Card>
-        </Grid>
+        </Grid>;
     }
 
     addToCart() {
-        const {data: {id, name, price, imageLink, other}} = this.props;
+        const {data, authenticationReducers, cartReducers, onUpdateCart} = this.props;
+        const {session} = authenticationReducers;
+        const {cart} = cartReducers;
 
-        console.log(id)
-        // TODO
+        if (session != null) {
+            const {token} = session;
+            if (token != null) {
+                cart.products = [...(cart.products != null ? cart.products : []), data];
+
+                dataSource.updateCart(token, cart).then(() => {
+
+                }).finally(() => {
+                    onUpdateCart(cart)
+                });
+            }
+        } else {
+            this.props.history.push("/login");
+        }
     }
 
     onDeleteProduct() {
@@ -87,10 +123,11 @@ const mapDispatchToProps = function (dispatch) {
     return {
         ...dispatch,
         onDeleteItem: (e) => dispatch(actionDeleteProduct(e)),
+        onUpdateCart: (e) => dispatch(actionUpdateCart(e)),
     }
 };
 
-export default connect(
+export default withRouter(connect(
     mapStateToProps,
     mapDispatchToProps
-)(Product);
+)(Product));

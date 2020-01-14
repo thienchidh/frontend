@@ -57,7 +57,7 @@ class Products extends BaseComponent {
             const {jsonResult} = this.optional;
 
             if (jsonResult != null) {
-                const totalItemActive = jsonResult.length - deletedItems.length;
+                const totalItemActive = jsonResult.length - Object.keys(deletedItems).length;
                 if (currentPage * this.optional.limit + this.optional.limit >= totalItemActive) {
                     return true;
                 }
@@ -123,12 +123,13 @@ class Products extends BaseComponent {
                     <TableFooter>
                         <TableRow>
                             <TablePagination
-                                rowsPerPageOptions={[4, 8, 16, 24, 32, 64, 128, 256, 512, 1024]}
+                                labelRowsPerPage={"Items per page:"}
+                                rowsPerPageOptions={[4, 8, 16, 24, 32, 64, 128, 256]}
                                 onChangeRowsPerPage={(event, choose) => {
                                     this.onFetchDataSuccess([]);
                                     onChangeItemAPage(choose.key);
                                 }}
-                                count={jsonResult.length - deletedItems.length}
+                                count={jsonResult.length - Object.keys(deletedItems).length}
                                 rowsPerPage={limit}
                                 page={currentPage}
                                 onChangePage={(event, page) => {

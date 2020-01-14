@@ -9,7 +9,7 @@ const initState = {
 export const productReducers = function (state = initState, action) {
     switch (action.type) {
         case ACTION_DELETE_PRODUCT:
-            state.deletedItems.push(action.payload);
+            state.deletedItems[action.payload] = true;
             return {
                 ...state,
                 deletedItem: state.deletedItems,
