@@ -84,11 +84,14 @@ export async function addListProducts(products) {
     return response?.status === 200;
 }
 
-export async function deleteProductById({id}) {
+export async function deleteProductById({token, id}) {
     const {baseApiUrl} = apiConfig;
     const response = await axios.post(
         `${baseApiUrl}/products/delete`,
-        {id}
+        {
+            token: token,
+            data: id
+        }
     ).catch(ignored => {
     });
     return response?.status === 200;

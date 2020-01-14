@@ -71,7 +71,6 @@ class SignUp extends React.Component {
             return true;
         }
 
-
         if (isValidForm()) {
             onBeginSignUp();
             dataSource.register(account).then(

@@ -10,10 +10,15 @@ import TablePagination from "@material-ui/core/TablePagination";
 import {Table, TableBody, TableFooter, TableRow} from "@material-ui/core";
 
 class Products extends BaseComponent {
-    page = 0;
 
-    onFetchDataBegin() {
-        this.props.beginFetchData();
+    optional = {
+        page: 0,
+        limit: 8,
+    };
+    isReached = false;
+
+    onFetchDataBegin(isLoadMore) {
+        this.props.beginFetchData(isLoadMore);
     }
 
     async onFetchData(optional) {
@@ -45,8 +50,65 @@ class Products extends BaseComponent {
         return null;
     }
 
+    shouldLoadMore() {
+        if (!this.isReached) {
+            const {productReducers} = this.props;
+            const {deletedItems, currentPage} = productReducers;
+            const {jsonResult} = this.optional;
+
+            if (jsonResult != null) {
+                const totalItemActive = jsonResult.length - deletedItems.length;
+                if (currentPage * this.optional.limit + this.optional.limit >= totalItemActive) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    loadMore() {
+        const that = this;
+        this.onFetchData(this.optional)
+            .then(
+                (jsonResult) => {
+                    const preJsonResult = that.optional.jsonResult;
+                    that.optional = {
+                        ...that.optional,
+                        page: that.optional.page + 1,
+                    };
+                    if (jsonResult.length === 0) {
+                        this.isReached = true
+                    }
+                    this.onFetchDataSuccess([...preJsonResult, ...jsonResult]);
+                }
+            )
+            .catch(
+                (error) => this.onFetchDataError(error)
+            );
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (this.shouldLoadMore()) {
+            this.loadMore()
+        }
+    }
+
     renderWhenSuccess(jsonResult) {
-        const {classes} = this.props;
+
+        const {classes, productReducers, onChangePage, onChangeItemAPage} = this.props;
+        const {deletedItems, currentPage, limitItemPage} = productReducers;
+
+        // save jsonResult
+        this.optional = {
+            ...this.optional,
+            jsonResult: Object.assign(jsonResult),
+            limit: limitItemPage
+        };
+
+        const {limit} = this.optional;
+
+        const start = currentPage * limit;
+        const slice = jsonResult.slice(start, start + limit);
 
         return <main>
             {/* Hero unit */}
@@ -55,45 +117,23 @@ class Products extends BaseComponent {
                 <Table className={classes.table} aria-label="custom pagination table">
                     <TableBody>
                         <Grid container spacing={2}>
-                            {jsonResult.map(item => <Product classes={classes} key={item.id} data={item}/>)}
+                            {slice.map(item => <Product classes={classes} key={item.id} data={item}/>)}
                         </Grid>
-                        {/*{(rowsPerPage > 0
-                                ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                                : rows
-                        ).map(row => (
-                            <TableRow key={row.name}>
-                                <TableCell component="th" scope="row">
-                                    {row.name}
-                                </TableCell>
-                                <TableCell align="right">{row.calories}</TableCell>
-                                <TableCell align="right">{row.fat}</TableCell>
-                            </TableRow>
-                        ))}
-
-                        {emptyRows > 0 && (
-                            <TableRow style={{height: 53 * emptyRows}}>
-                                <TableCell colSpan={6}/>
-                            </TableRow>
-                        )}*/}
                     </TableBody>
                     <TableFooter>
                         <TableRow>
                             <TablePagination
-                                rowsPerPageOptions={[1, 2, 3, 4, {
-                                    label: 'All',
-                                    value: jsonResult.length / 4 + ((jsonResult.length % 4) !== 0)
-                                }]}
-                                colSpan={3}
-                                count={jsonResult.length}
-                                // rowsPerPage={rowsPerPage}
-                                page={this.page}
-                                // SelectProps={{
-                                //     inputProps: {'aria-label': 'rows per page'},
-                                //     native: true,
-                                //}}
-                                // onChangePage={handleChangePage}
-                                // onChangeRowsPerPage={handleChangeRowsPerPage}
-                                // ActionsComponent={TablePaginationActions}
+                                rowsPerPageOptions={[4, 8, 16, 24, 32, 64, 128, 256, 512, 1024]}
+                                onChangeRowsPerPage={(event, choose) => {
+                                    this.onFetchDataSuccess([]);
+                                    onChangeItemAPage(choose.key);
+                                }}
+                                count={jsonResult.length - deletedItems.length}
+                                rowsPerPage={limit}
+                                page={currentPage}
+                                onChangePage={(event, page) => {
+                                    onChangePage(page);
+                                }}
                             />
                         </TableRow>
                     </TableFooter>
@@ -116,6 +156,7 @@ class Products extends BaseComponent {
         </div>;
     }
 }
+
 
 export default connect(
     mapStateToProps,

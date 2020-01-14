@@ -62,7 +62,7 @@ function Header(props) {
                             className={link}
                             onClick={isHaveSession ? logout : null}
                     >
-                        {isHaveSession ? "logout" : "login"}
+                        {isHaveSession ? `logout(${session.user.lastName})` : "login"}
                     </Button>
                 </Toolbar>
             </AppBar>

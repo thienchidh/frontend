@@ -1,7 +1,7 @@
 import * as React from "react";
 import {object} from "prop-types";
 import {connect} from "react-redux";
-import {mapDispatchToProps, mapStateToProps} from "./BaseComponent";
+import {mapStateToProps} from "./BaseComponent";
 import Card from "@material-ui/core/Card";
 import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
@@ -10,6 +10,8 @@ import CardActions from "@material-ui/core/CardActions";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import autoBind from "auto-bind";
+import * as dataSource from "../../api/datasource";
+import {actionDeleteProduct} from "../../redux/actions/actionProducts";
 
 class Product extends React.Component {
 
@@ -19,7 +21,13 @@ class Product extends React.Component {
     }
 
     render() {
-        const {classes, data: {name, price, imageLink, other}} = this.props;
+        const {classes, data: {id, name, price, imageLink, other}, authenticationReducers, productReducers} = this.props;
+        const {session} = authenticationReducers;
+        const {deletedItems} = productReducers;
+
+        if (deletedItems.includes(id)) {
+            return null;
+        }
 
         return <Grid item xs={12} sm={6} md={3}>
             <Card className={classes.card}>
@@ -40,27 +48,46 @@ class Product extends React.Component {
                     </Typography>
                 </CardContent>
                 <CardActions>
-                    <Button size="small" color="primary">
-                        View
-                    </Button>
-                    <Button size="small" color="primary" onClick={this.buy}>
-                        Buy
-                    </Button>
+                    {
+                        session?.user?.role === 'IS_ADMIN' ?
+                            <Button size="small" color="primary" onClick={this.onDeleteProduct}>Delete</Button> :
+                            <Button size="small" color="primary" onClick={this.addToCart}>Add to cart</Button>
+                    }
                 </CardActions>
             </Card>
         </Grid>
     }
 
-    buy({target}) {
+    addToCart() {
         const {data: {id, name, price, imageLink, other}} = this.props;
 
         console.log(id)
         // TODO
     }
+
+    onDeleteProduct() {
+        const {onDeleteItem, data: {id}, authenticationReducers} = this.props;
+        const {session} = authenticationReducers;
+
+        dataSource.deleteProductById({token: session.token, id: id})
+            .then(() => {
+                    onDeleteItem(id)
+                }
+            ).catch(ignored => {
+        });
+    }
 }
 
 Product.propTypes = {
     data: object.isRequired
+};
+
+
+const mapDispatchToProps = function (dispatch) {
+    return {
+        ...dispatch,
+        onDeleteItem: (e) => dispatch(actionDeleteProduct(e)),
+    }
 };
 
 export default connect(

@@ -4,6 +4,7 @@ const initState = {
     isLoading: false,
     jsonResult: null,
     error: null,
+    isLoadMore: false
 };
 
 export const fetchDataReducers = function (state = initState, action) {
@@ -11,20 +12,23 @@ export const fetchDataReducers = function (state = initState, action) {
         case BEGIN_FETCH_DATA:
             return {
                 ...state,
-                isLoading: true
+                isLoading: true,
+                isLoadMore: (action.payload === true),
             };
         case SUCCESS_FETCH_DATA:
             return {
                 ...state,
                 isLoading: false,
                 error: null,
-                jsonResult: action.payload
+                jsonResult: action.payload,
+                isLoadMore: false
             };
         case ERROR_FETCH_DATA:
             return {
                 ...state,
                 isLoading: false,
-                error: action.payload
+                error: action.payload,
+                isLoadMore: false
             };
         default:
     }
