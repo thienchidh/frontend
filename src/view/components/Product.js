@@ -1,20 +1,23 @@
 import * as React from "react";
 import {object} from "prop-types";
 import {connect} from "react-redux";
-import {mapStateToProps} from "./BaseComponent";
 import Card from "@material-ui/core/Card";
 import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import CardActions from "@material-ui/core/CardActions";
-import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import autoBind from "auto-bind";
 import * as dataSource from "../../api/datasource";
-import {actionDeleteProduct, actionUpdateQuantity} from "../../redux/actions/actionProducts";
+import {
+    actionAddProduct,
+    actionDeleteProduct,
+    actionTypeProduct,
+    actionUpdateQuantity
+} from "../../redux/actions/actionProducts";
 import {withRouter} from "react-router-dom";
 import {actionUpdateCart} from "../../redux/actions/actionCart";
-import {Add, AddShoppingCart, Remove} from "@material-ui/icons";
+import {Add, AddShoppingCart, Check, Delete, Remove} from "@material-ui/icons";
 import IconButton from "@material-ui/core/IconButton";
 import {TextField} from "@material-ui/core";
 
@@ -26,17 +29,22 @@ class Product extends React.Component {
     }
 
     render() {
+        const {noContent} = this.props;
+        if (noContent) {
+            return this.renderItemEmpty();
+        }
+
         const {classes, data: {id, name, price, imageLink, other}, authenticationReducers, productReducers} = this.props;
         const {session} = authenticationReducers;
-        const {deletedItems, quantityItems} = productReducers;
 
+        const {deletedItems, quantityItems} = productReducers;
         if (deletedItems[id] === true) {
             return null;
         }
 
         const currentChoose = quantityItems[id] || 0;
 
-        return <Grid item xs={12} sm={6} md={3}>
+        return <Grid item xs={12} sm={3} md={3}>
             <Card className={classes.card}>
                 <CardMedia
                     className={classes.cardMedia}
@@ -50,7 +58,7 @@ class Product extends React.Component {
                 </CardContent>
                 <CardActions>
                     <Grid container>
-                        <Grid item xs={12} sm={6} md={3}>
+                        <Grid item xs={12} sm={3} md={3}>
                             <IconButton
                                 color="secondary"
                                 onClick={() => {
@@ -59,7 +67,7 @@ class Product extends React.Component {
                                 <Remove/>
                             </IconButton>
                         </Grid>
-                        <Grid item xs={12} sm={6} md={3}>
+                        <Grid item xs={12} sm={3} md={3}>
                             <TextField color={"secondary"}
                                        onChange={({target}) => {
                                            this.updateQuantity(-currentChoose + parseInt(target.value));
@@ -67,7 +75,7 @@ class Product extends React.Component {
                                        inputProps={{min: 0, style: {textAlign: 'center'}}}
                                        value={currentChoose}/>
                         </Grid>
-                        <Grid item xs={12} sm={6} md={3}>
+                        <Grid item xs={12} sm={3} md={3}>
                             <IconButton
                                 color="secondary"
                                 onClick={() => {
@@ -76,11 +84,13 @@ class Product extends React.Component {
                                 <Add/>
                             </IconButton>
                         </Grid>
-                        <Grid item xs={12} sm={6} md={3}>
+                        <Grid item xs={12} sm={3} md={3}>
                             {
                                 session?.user?.role === 'IS_ADMIN' ?
-                                    <Button size="small" color="primary"
-                                            onClick={this.onDeleteProduct}>Delete</Button> :
+                                    <IconButton color="primary"
+                                                onClick={this.onDeleteProduct}>
+                                        <Delete/>
+                                    </IconButton> :
                                     <IconButton
                                         color="primary"
                                         onClick={this.addToCart}
@@ -151,19 +161,85 @@ class Product extends React.Component {
         quantityItems[id] = Math.min(10000, Math.max(0, (quantityItems[id] || 0) + number));
         onUpdateQuantity(quantityItems)
     }
+
+    renderItemEmpty() {
+        const {classes, newProduct} = this.props;
+
+        return [1].map((value, index) =>
+            <Grid key={index} item xs={12} sm={3} md={3}>
+                <Card className={classes.card}>
+                    <CardContent className={classes.cardContent}>
+                        <TextField
+                            name="imageLink"
+                            helperText={"Link of image"}
+                            value={newProduct.imageLink}
+                            fullWidth={true}
+                            onChange={this.onChangeTextField}
+                        />
+                        <TextField
+                            helperText="Name of product"
+                            name="name"
+                            value={newProduct.name}
+                            onChange={this.onChangeTextField}
+                            fullWidth={true}/>
+                        <TextField
+                            helperText="Price of product"
+                            name="price"
+                            value={newProduct.price}
+                            fullWidth={true}
+                            onChange={this.onChangeTextField}/>
+                        <TextField
+                            helperText="Description of product"
+                            name="other"
+                            value={newProduct.other}
+                            fullWidth={true}
+                            onChange={this.onChangeTextField}/>
+                        <Grid container justify={"center"}>
+                            <Grid item>
+                                <IconButton onClick={this.addProductItem}>
+                                    <Check/>
+                                </IconButton>
+                            </Grid>
+                        </Grid>
+                    </CardContent>
+                </Card>
+            </Grid>);
+    }
+
+    addProductItem() {
+        //TODO
+        const {newProduct, authenticationReducers, actionAddProduct} = this.props;
+        const {session} = authenticationReducers;
+
+        actionAddProduct();
+        dataSource.addProduct(session.token, newProduct)
+            .then(ignored => {
+            });
+    }
+
+    onChangeTextField({target}) {
+        const {onTypeProduct} = this.props;
+        onTypeProduct(target);
+    }
 }
 
 Product.propTypes = {
     data: object.isRequired
 };
 
+const mapStateToProps = state => ({
+    ...state,
+    newProduct: state.productReducers.newProduct,
+});
 
 const mapDispatchToProps = function (dispatch) {
     return {
         ...dispatch,
         onDeleteItem: (e) => dispatch(actionDeleteProduct(e)),
         onUpdateCart: (e) => dispatch(actionUpdateCart(e)),
-        onUpdateQuantity: (e) => dispatch(actionUpdateQuantity(e))
+        onUpdateQuantity: (e) => dispatch(actionUpdateQuantity(e)),
+        onTypeProduct: (e) => dispatch(actionTypeProduct(e)),
+        actionAddProduct: (e) => dispatch(actionAddProduct(e))
     }
 };
 

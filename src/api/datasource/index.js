@@ -66,19 +66,25 @@ export async function fetchProductById(id) {
 
 
 /** BEGIN ADMIN ONLY **/
-export async function addProduct(product) {
+export async function addProduct(token, product) {
     const response = await axios.post(
         `${baseApiUrl}/products/add`,
-        product
+        {
+            token: token,
+            data: product
+        }
     ).catch(ignored => {
     });
     return response?.status === 200;
 }
 
-export async function addListProducts(products) {
+export async function addListProducts(token, products) {
     const response = await axios.post(
         `${baseApiUrl}/products/addList`,
-        products
+        {
+            token: token,
+            data: products
+        }
     ).catch(ignored => {
     });
     return response?.status === 200;

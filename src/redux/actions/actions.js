@@ -7,7 +7,13 @@ import {
     actionErrorLogin
 } from "./actionSignIn";
 import {actionChangeAccountInfo, actionChangeSignUpInfo, actionChangeUserInfo} from "./actionSignUp";
-import {actionChangePage, actionDeleteProduct, actionUpdateQuantity} from "./actionProducts";
+import {
+    actionAddProduct,
+    actionChangePage,
+    actionDeleteProduct,
+    actionTypeProduct,
+    actionUpdateQuantity
+} from "./actionProducts";
 import {actionCloseCart, actionOpenCart, actionUpdateCart} from "./actionCart";
 
 export default {
@@ -28,4 +34,7 @@ export default {
     actionDeleteProduct,
     actionChangePage,
     actionUpdateQuantity,
+    actionAddProduct,
+    actionTypeProduct,
+
 };

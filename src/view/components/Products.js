@@ -95,7 +95,7 @@ class Products extends BaseComponent {
 
     renderWhenSuccess(jsonResult) {
 
-        const {classes, productReducers, onChangePage, onChangeItemAPage} = this.props;
+        const {classes, productReducers, onChangePage, onChangeItemAPage, authenticationReducers} = this.props;
         const {deletedItems, currentPage, limitItemPage} = productReducers;
 
         // save jsonResult
@@ -110,12 +110,19 @@ class Products extends BaseComponent {
         const start = currentPage * limit;
         const slice = jsonResult.slice(start, start + limit);
 
+        const {cartReducers} = this.props;
+        const {cart} = cartReducers;
+
+        const {session} = authenticationReducers;
+        const isAdmin = session?.user?.role === 'IS_ADMIN';
+
         return <main>
             {/* Hero unit */}
             <Container className={classes.cardGrid} maxWidth="md">
                 {/* End hero unit */}
                 <Grid container spacing={2}>
                     {slice.map(item => <Product classes={classes} key={item.id} data={item}/>)}
+                    {isAdmin ? <Product classes={classes} data={{}} noContent={true}/> : null}
                 </Grid>
                 <Table className={classes.table} aria-label="custom pagination table">
                     <TableFooter>

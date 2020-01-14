@@ -1,7 +1,9 @@
 import {
+    ACTION_ADD_PRODUCT,
     ACTION_CHANGE_ITEM_PAGE,
     ACTION_CHANGE_PAGE,
     ACTION_DELETE_PRODUCT,
+    ACTION_TYPE_PRODUCT,
     ACTION_UPDATE_QUANTITY
 } from "../actions/actionName";
 
@@ -9,7 +11,13 @@ const initState = {
     deletedItems: [],
     quantityItems: [],
     currentPage: 0,
-    limitItemPage: 8
+    limitItemPage: 8,
+    newProduct: {
+        name: "",
+        price: "",
+        imageLink: "",
+        other: ""
+    }
 };
 
 export const productReducers = function (state = initState, action) {
@@ -33,10 +41,27 @@ export const productReducers = function (state = initState, action) {
                 deletedItem: []
             };
         case ACTION_UPDATE_QUANTITY:
-            const quantities = action.payload;
             return {
                 ...state,
-                quantityItems: quantities,
+            };
+        case ACTION_ADD_PRODUCT:
+            return {
+                ...state,
+                newProduct: {
+                    name: "",
+                    price: "",
+                    imageLink: "",
+                    other: ""
+                }
+            };
+        case ACTION_TYPE_PRODUCT:
+            const {name, value} = action.payload;
+            return {
+                ...state,
+                newProduct: {
+                    ...state.newProduct,
+                    [name]: value
+                }
             };
         default:
     }
