@@ -211,6 +211,10 @@ class Product extends React.Component {
         const {newProduct, authenticationReducers, actionAddProduct} = this.props;
         const {session} = authenticationReducers;
 
+        if (session == null) {
+            this.props.history.push('/login');
+        }
+
         actionAddProduct();
         dataSource.addProduct(session.token, newProduct)
             .then(ignored => {

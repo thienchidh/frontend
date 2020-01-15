@@ -71,9 +71,9 @@ class Cart extends React.Component {
     computeTotalPrice() {
         const {cartReducers} = this.props;
         const {cart} = cartReducers;
-        const {products} = cart;
 
         let total = 0;
+        const products = cart.products || [];
         products.forEach(value => {
             total += value.price
         });

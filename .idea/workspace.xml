@@ -3,13 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="b07ff4bc-25b2-440f-a39d-3049d12453d1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/datasource/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/datasource/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/actions/actionName.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/actions/actionName.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/actions/actionProducts.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/actions/actionProducts.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/actions/actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/actions/actions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/reducers/productReducers.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/reducers/productReducers.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/components/Product.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/Product.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/Products.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/Products.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/pages/Cart.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/pages/Cart.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -160,7 +155,8 @@
       <workItem from="1578994155837" duration="105000" />
       <workItem from="1578994289386" duration="1675000" />
       <workItem from="1578996011901" duration="10270000" />
-      <workItem from="1579009819379" duration="32290000" />
+      <workItem from="1579009819379" duration="33026000" />
+      <workItem from="1579081538755" duration="672000" />
     </task>
     <task id="LOCAL-00001" summary="add api call, fix bug">
       <created>1578170674824</created>
@@ -225,7 +221,14 @@
       <option name="project" value="LOCAL" />
       <updated>1579040493033</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="add product for admin, change ui, fix bugs">
+      <created>1579045553774</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1579045553774</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -244,7 +247,8 @@
     <MESSAGE value="add load more item..." />
     <MESSAGE value="fix ui" />
     <MESSAGE value="add ui, add feature." />
-    <option name="LAST_COMMIT_MESSAGE" value="add ui, add feature." />
+    <MESSAGE value="add product for admin, change ui, fix bugs" />
+    <option name="LAST_COMMIT_MESSAGE" value="add product for admin, change ui, fix bugs" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -270,30 +274,30 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="413" y="119" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.738@0.0.1366.738" timestamp="1578834933963" />
-    <state x="321" y="0" key="CommitChangelistDialog2" timestamp="1579045521491">
+    <state x="321" y="0" key="CommitChangelistDialog2" timestamp="1579045551479">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="321" y="0" key="CommitChangelistDialog2/0.0.1366.738@0.0.1366.738" timestamp="1579045521491" />
+    <state x="321" y="0" key="CommitChangelistDialog2/0.0.1366.738@0.0.1366.738" timestamp="1579045551479" />
     <state x="463" y="127" key="FileChooserDialogImpl" timestamp="1579029284155">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="463" y="127" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1579029284155" />
-    <state width="1323" height="178" key="GridCell.Tab.0.bottom" timestamp="1579035687250">
+    <state width="1323" height="178" key="GridCell.Tab.0.bottom" timestamp="1579082142199">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="178" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1579035687250" />
-    <state width="1323" height="178" key="GridCell.Tab.0.center" timestamp="1579035687250">
+    <state width="1323" height="178" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1579082142199" />
+    <state width="1323" height="178" key="GridCell.Tab.0.center" timestamp="1579082142199">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="178" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1579035687250" />
-    <state width="1323" height="178" key="GridCell.Tab.0.left" timestamp="1579035687250">
+    <state width="1323" height="178" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1579082142199" />
+    <state width="1323" height="178" key="GridCell.Tab.0.left" timestamp="1579082142199">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="178" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1579035687250" />
-    <state width="1323" height="178" key="GridCell.Tab.0.right" timestamp="1579035687250">
+    <state width="1323" height="178" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1579082142199" />
+    <state width="1323" height="178" key="GridCell.Tab.0.right" timestamp="1579082142199">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="178" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1579035687250" />
+    <state width="1323" height="178" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1579082142199" />
     <state x="263" y="115" key="IDE.errors.dialog" timestamp="1578856038708">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
@@ -302,18 +306,18 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="186" y="15" key="SettingsEditor/0.0.1366.738@0.0.1366.738" timestamp="1579034751235" />
-    <state x="390" y="197" key="com.intellij.ide.util.TipDialog" timestamp="1579009823880">
+    <state x="390" y="197" key="com.intellij.ide.util.TipDialog" timestamp="1579081539115">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="390" y="197" key="com.intellij.ide.util.TipDialog/0.0.1366.738@0.0.1366.738" timestamp="1579009823880" />
+    <state x="390" y="197" key="com.intellij.ide.util.TipDialog/0.0.1366.738@0.0.1366.738" timestamp="1579081539115" />
     <state x="494" y="288" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1579035829003">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="494" y="288" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1366.738@0.0.1366.738" timestamp="1579035829003" />
-    <state x="390" y="125" width="709" height="546" key="find.popup" timestamp="1579045205395">
+    <state x="390" y="125" width="709" height="546" key="find.popup" timestamp="1579082160674">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="390" y="125" width="709" height="546" key="find.popup/0.0.1366.738@0.0.1366.738" timestamp="1579045205395" />
+    <state x="390" y="125" width="709" height="546" key="find.popup/0.0.1366.738@0.0.1366.738" timestamp="1579082160674" />
     <state x="339" y="165" key="run.anything.popup" timestamp="1578922127153">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
