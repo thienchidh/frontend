@@ -33,9 +33,9 @@ function Review(props) {
     const classes = useStyles();
     const {cartReducers, authenticationReducers, onUpdateCart} = props;
     const {cart} = cartReducers;
-    const {products} = cart;
 
     function computeTotalPrice() {
+        const products = cart.products || [];
         let total = 0;
         products.forEach(value => {
             total += value.price
