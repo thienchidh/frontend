@@ -42,7 +42,12 @@ async function _manualLogin({username, password}) {
 export async function logout(token) {
     const response = await axios.post(
         `${baseApiUrl}/logout`,
-        {token}
+        token,
+        {
+            headers: {
+                'Content-Type': 'text/plain'
+            }
+        }
     ).catch(ignored => {
     });
     return response?.status === 200;
